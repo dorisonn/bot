@@ -1,20 +1,26 @@
 name: Discord Bot
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
   bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm install
-      - run: node index.js
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run bot
+        run: node index.js
         env:
           TOKEN: ${{ secrets.TOKEN }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
