@@ -21,3 +21,6 @@ jobs:
 
       - name: Run bot
         run: node index.js
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
