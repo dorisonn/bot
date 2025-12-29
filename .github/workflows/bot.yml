@@ -1,26 +1,19 @@
-name: Discord Bot
+name: bot
 
 on:
   workflow_dispatch:
 
 jobs:
-  bot:
+  run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
-      - name: Run bot
-        run: node index.js
-        env:
-          TOKEN: ${{ secrets.TOKEN }}
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      - run: node index.js
